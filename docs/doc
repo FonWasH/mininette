@@ -1,0 +1,62 @@
+NAME
+    mininette - Tool for the piscine of the 42 school.
+
+SYPNOSIS
+    mininette [OPTION]... DIRECTORY... EXERCISE NAME...
+
+DESCRIPTION
+    This tool will copy all your current work from a given path into the current directory in a folder named 'output'.
+    It will also launch standard test (norminette), compile and finally launch a diff test (mininette).
+    Using 'output' directory for working is at your own risk, it will be remove/clean each launch of the mininette.
+    Three types of test is available using its own file:
+        -   function    main.c
+        -   program     prog-cmd-[0-99].txt
+        -   makefile    make-cmd-[0-99].txt
+    Each file must be placed in a valide path (see 'Directory tree' for more information), if the file is missing the test is count as 'unavailable'.
+    For the program test or the makefile test, if extra files is needed, they must be placed in the 'test_file' directory.
+    After all tests, you have at your disposal in the 'output' directory:
+        -   trace.txt   text file with the traces of diff tests
+        -   src.txt     text file with all the source code
+        -   objects     all executable objects
+    And a log file named 'mini.log' in the current directory.
+
+    -f [DIRECTORY ...] [EXERCISE NAME ...]
+        force cleaning and creation of 'output' directory without prompt
+
+    -c [DIRECTORY ...] [EXERCISE NAME ...]
+        copy and compile without standard test and diff test
+
+    -add [DIRECTORY ...] [EXERCISE NAME ...]
+        create diff files
+
+    --show    
+        show available tests
+
+    --clean
+        clean 'output' directory and mini.log
+
+    Directory tree:
+    install_path/
+        |
+        utils/
+            |
+            build/
+                |
+                exercise_name/
+                    |
+                    ex[00-99]/
+                        test_file/
+                            file_name
+                            ...
+                        main.c || prog-cmd-[0-99].txt || make-cmd-[0-99].txt
+                    ...
+            diff/
+                |
+                exercise_name/
+                    |
+                    ex[00-99]/
+                        ex[00-99]-exercice_name.diff
+                    ...
+
+AUTHOR
+    Julien Perez (FonWasH)
